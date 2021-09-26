@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_food/helpers/platform_aware_asset_image.dart';
 import 'package:flutter_food/pages/food/food_main_page.dart';
 import 'package:flutter_food/pages/profile/profile_page.dart';
 
@@ -54,10 +55,15 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
-                    radius: 40.0,
-                    backgroundImage: AssetImage(
-                        '${kIsWeb ? 'assets/' : ''}assets/images/profile.png'),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(40.0),
+                    child: Container(
+                      width: 80.0,
+                      height: 80.0,
+                      child: PlatformAwareAssetImage(
+                        assetPath: 'assets/images/profile.png',
+                      ),
+                    )
                   ),
                   SizedBox(height: 8.0),
                   Text(
