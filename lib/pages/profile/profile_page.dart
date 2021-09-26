@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -13,7 +14,7 @@ class ProfilePage extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 90.0,
-            backgroundImage: AssetImage('assets/images/profile.png'),
+            backgroundImage: AssetImage('${kIsWeb ? 'assets/' : ''}assets/images/profile.png'),
           ),
           SizedBox(height: 24.0),
           Text('Promlert Lovichit',

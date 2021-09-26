@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_food/pages/food/food_main_page.dart';
 import 'package:flutter_food/pages/profile/profile_page.dart';
@@ -32,8 +33,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text(_pageDataList[_selectedDrawerItemIndex]['title'] as String),
+        title: Text(_pageDataList[_selectedDrawerItemIndex]['title'] as String),
       ),
       drawer: Drawer(
         child: ListView(
@@ -56,7 +56,8 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   CircleAvatar(
                     radius: 40.0,
-                    backgroundImage: AssetImage('assets/images/profile.png'),
+                    backgroundImage: AssetImage(
+                        '${kIsWeb ? 'assets/' : ''}assets/images/profile.png'),
                   ),
                   SizedBox(height: 8.0),
                   Text(
@@ -88,8 +89,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onTap: () {
                   setState(() {
-                    _selectedDrawerItemIndex = _pageDataList
-                        .indexWhere((element) => item == element);
+                    _selectedDrawerItemIndex =
+                        _pageDataList.indexWhere((element) => item == element);
                   });
                   Navigator.of(context).pop();
                 },
