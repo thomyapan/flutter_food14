@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_food/helpers/platform_aware_asset_image.dart';
-import 'package:flutter_food/pages/food/food_main_page.dart';
+import 'package:flutter_food/pages/food/food_page.dart';
 import 'package:flutter_food/pages/profile/profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     {
       'icon': Icons.fastfood,
       'title': 'Food',
-      'page': FoodMainPage(),
+      'page': FoodPage(),
     },
     {
       'icon': Icons.person,
@@ -56,21 +56,20 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(40.0),
-                    child: Container(
-                      width: 80.0,
-                      height: 80.0,
-                      child: PlatformAwareAssetImage(
-                        assetPath: 'assets/images/profile.png',
-                      ),
+                    borderRadius: BorderRadius.circular(37.5),
+                    child: PlatformAwareAssetImage(
+                      assetPath: 'assets/images/profile.png',
+                      width: 75.0,
+                      height: 75.0,
+                      fit: BoxFit.cover,
                     )
                   ),
-                  SizedBox(height: 8.0),
+                  SizedBox(height: 6.0),
                   Text(
                     'Promlert Lovichit',
                     style: TextStyle(fontSize: 20.0, color: Colors.white),
                   ),
-                  SizedBox(height: 4.0),
+                  //SizedBox(height: 2.0),
                   Text(
                     'promlert@gmail.com',
                     style: TextStyle(
@@ -96,7 +95,9 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   setState(() {
                     _selectedDrawerItemIndex =
-                        _pageDataList.indexWhere((element) => item == element);
+                        _pageDataList.indexWhere((element) {
+                          return item == element;
+                        });
                   });
                   Navigator.of(context).pop();
                 },

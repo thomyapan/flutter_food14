@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_food/pages/food/food_list_page.dart';
 
-class FoodMainPage extends StatefulWidget {
-  const FoodMainPage({Key? key}) : super(key: key);
+class FoodPage extends StatefulWidget {
+  const FoodPage({Key? key}) : super(key: key);
 
   @override
-  _FoodMainPageState createState() => _FoodMainPageState();
+  _FoodPageState createState() => _FoodPageState();
 }
 
-class _FoodMainPageState extends State<FoodMainPage> {
+class _FoodPageState extends State<FoodPage> {
   var _selectedBottomNavIndex = 0;
 
   @override
@@ -32,12 +33,7 @@ class _FoodMainPageState extends State<FoodMainPage> {
         },
       ),
       body: _selectedBottomNavIndex == 0
-          ? Container(
-              child: Center(
-                child: Text('FOOD MENU',
-                    style: Theme.of(context).textTheme.headline1),
-              ),
-            )
+          ? FoodListPage()
           : Container(
               child: Center(
                 child: Text('YOUR ORDER',
