@@ -35,6 +35,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_pageDataList[_selectedDrawerItemIndex]['title'] as String),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.refresh)),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -56,14 +60,13 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(37.5),
-                    child: PlatformAwareAssetImage(
-                      assetPath: 'assets/images/profile.png',
-                      width: 75.0,
-                      height: 75.0,
-                      fit: BoxFit.cover,
-                    )
-                  ),
+                      borderRadius: BorderRadius.circular(37.5),
+                      child: PlatformAwareAssetImage(
+                        assetPath: 'assets/images/profile.png',
+                        width: 75.0,
+                        height: 75.0,
+                        fit: BoxFit.cover,
+                      )),
                   SizedBox(height: 6.0),
                   Text(
                     'Promlert Lovichit',
@@ -96,8 +99,8 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     _selectedDrawerItemIndex =
                         _pageDataList.indexWhere((element) {
-                          return item == element;
-                        });
+                      return item == element;
+                    });
                   });
                   Navigator.of(context).pop();
                 },
