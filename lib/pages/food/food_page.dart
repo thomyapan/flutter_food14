@@ -38,7 +38,7 @@ class _FoodPageState extends State<FoodPage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _fetchFoods,
+        onPressed: _test,
         child: Icon(Icons.add),
       ),
       body: _selectedBottomNavIndex == 0
@@ -52,7 +52,41 @@ class _FoodPageState extends State<FoodPage> {
     );
   }
 
-  _fetchFoods() async {
+  Future<void> _test() async {
+    var url = Uri.parse('https://cpsu-test-api.herokuapp.com/foods');
+    var response = await http.post(url, body: {
+      'pin': '123456'
+    });
+    if (response.statusCode == 200){
+      Map<String, dynamic> jsonBody = json.decode(response.body);
+      String status = jsonBody['status'];
+      String? message = jsonBody['message'];
+      List<dynamic> data = jsonBody['data'];
+
+      print('STATUS: $status');
+      print('MESSAGE: $message');
+      //print('data: $data');
+
+      var foodList = data.map((element) => FoodItem(
+          id: element['id'],
+          name: element['name'],
+          price: element['price'],
+          image: element['image'],
+      )).toList();
+
+      /*data.forEach((element) {
+        FoodItem(
+          id: element['id'],
+          name: element['name'],
+          price: element['price'],
+          image: element['image']
+        );
+      });*/
+    }
+  }
+
+
+  /*_fetchFoods() async {
     try {
       var list = (await _fetch('foods')) as List<dynamic>;
       var foodList = list.map((item) => FoodItem.fromJson(item)).toList();
@@ -90,5 +124,5 @@ class _FoodPageState extends State<FoodPage> {
     } else {
       throw Exception('Server connection failed!');
     }
-  }
+  }*/
 }
